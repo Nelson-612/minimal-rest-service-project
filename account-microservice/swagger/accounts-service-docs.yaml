@@ -29,10 +29,9 @@ paths:
         responses:
           '200':
             description: 'Fetch all users from the database'
-            # schema:
-            #     $ref: '#/definitions/User'
-
-  /accounts/createUser:
+            schema:
+                $ref: '#/definitions/User'
+  /games/createUser:
     post:
       tags:
       - admins
@@ -43,7 +42,7 @@ paths:
       - application/json
       parameters:
       - in: body
-        name: SteamUser
+        name: steamUser
         description: Inventory user to add
         schema:
           $ref: '#/definitions/User'
@@ -56,66 +55,66 @@ paths:
         409:
           description: an existing item already exists
 
-  /accounts/updateUser:
-    put:
-      tags:
-      - admins
-      operationId: api.accounts.update_user
-      consumes:
-      - application/json
-      produces:
-      - application/json
-      parameters:
-      - in: body
-        name: user_payload
-        description: Inventory item to add
-        schema:
-          $ref: '#/definitions/User'
-      responses:
-        201:
-          description: Successfully added user to the DB
-        400:
-          description: invalid input, object invalid
-        408:
-          description: error, item not modified
-        409:
-          description: an existing item already exists
+  # /accounts/updateUser:
+  #   put:
+  #     tags:
+  #     - admins
+  #     operationId: api.accounts.update_user
+  #     consumes:
+  #     - application/json
+  #     produces:
+  #     - application/json
+  #     parameters:
+  #     - in: body
+  #       name: user_payload
+  #       description: Inventory item to add
+  #       schema:
+  #         $ref: '#/definitions/User'
+  #     responses:
+  #       201:
+  #         description: Successfully added user to the DB
+  #       400:
+  #         description: invalid input, object invalid
+  #       408:
+  #         description: error, item not modified
+  #       409:
+  #         description: an existing item already exists
 
-  /accounts/{user_id}:
-      get:
-        tags:
-        - public
-        operationId: api.accounts.read_user
-        parameters:
-          - in: path
-            name: user_id
-            type: string
-            required: true
-            description: Numeric ID of the user to get.
-        responses:
-          '200':
-            description: 'Fetch a user from the database'
-            schema:
-                $ref: '#/definitions/User'
-      delete:
-        tags:
-        - admins
-        parameters:
-          - in: path
-            name: user_id
-            type: string
-            required: true
-            description: Numeric ID of the user to delete.
-        operationId: api.accounts.delete_user
-        responses:
-          200:
-            description: Successfully deleted user
-          400:
-            description: invalid input, object invalid
-          409:
-            description: conflict error
-          401:
-            description: Not correctly authorized
+  # /games/{gameTitle}:
+  #     get:
+  #       tags:
+  #       - public
+  #       operationId: api.accounts.read_game_by_title
+  #       parameters:
+  #         - in: path
+  #           name: gameTitle
+  #           type: string
+  #           required: true
+  #           description: Numeric ID of the user to get.
+  #       responses:
+  #         '200':
+  #           description: 'Fetch a user from the database'
+  #           schema:
+  #               $ref: '#/definitions/User'
+      # delete:
+      #   tags:
+      #   - admins
+      #   parameters:
+      #     - in: path
+      #       name: user_id
+      #       type: string
+      #       required: true
+      #       description: Numeric ID of the user to delete.
+      #   operationId: api.accounts.delete_user
+      #   responses:
+      #     200:
+      #       description: Successfully deleted user
+      #     400:
+      #       description: invalid input, object invalid
+      #     409:
+      #       description: conflict error
+      #     401:
+      #       description: Not correctly authorized
       
 
 # tags are used for organizing operations

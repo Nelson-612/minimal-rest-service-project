@@ -3,13 +3,15 @@ import connexion
 from flask_injector import FlaskInjector
 from connexion.resolver import RestyResolver
 from providers.MongoProvider import MongoProvider
+from providers.UserProvider import UserProvider
 from injector import Binder
 from flask_cors import CORS
 
 
 def configure(binder: Binder) -> Binder:
     binder.bind(
-        MongoProvider
+        MongoProvider,
+        UserProvider
     )
 
 
