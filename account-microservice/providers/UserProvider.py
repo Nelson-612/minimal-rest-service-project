@@ -28,3 +28,19 @@ class UserProvider(object):
 	def create_user(self, steamUser):
 		self.mycol.insert_one(steamUser)
 		return json.loads(JSONEncoder().encode(steamUser)), 201
+
+
+	def update_user(self, updateUser):
+		# if self.mycol.count.documents({'_id': updateUser['_id']}, limit=1) != 0: 
+		#     print("Found a user in DB with this id")
+		user_query = {"_id": updateUser['_id']}
+		new_values = {"$set": updateUser}
+
+		x = self.mycol.update_one(user_query, new_values)
+		if x.modified_count != 0:
+			return {"message": "Success"}, 201
+		else:
+			return {"error": "user not modified"}, 403
+		# else:
+		#     # user not found
+		#     return {"error": "user not found"}, 409

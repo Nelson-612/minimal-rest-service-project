@@ -55,30 +55,30 @@ paths:
         409:
           description: an existing item already exists
 
-  # /accounts/updateUser:
-  #   put:
-  #     tags:
-  #     - admins
-  #     operationId: api.accounts.update_user
-  #     consumes:
-  #     - application/json
-  #     produces:
-  #     - application/json
-  #     parameters:
-  #     - in: body
-  #       name: user_payload
-  #       description: Inventory item to add
-  #       schema:
-  #         $ref: '#/definitions/User'
-  #     responses:
-  #       201:
-  #         description: Successfully added user to the DB
-  #       400:
-  #         description: invalid input, object invalid
-  #       408:
-  #         description: error, item not modified
-  #       409:
-  #         description: an existing item already exists
+  /games/updateUser:
+    put:
+      tags:
+      - admins
+      operationId: api.accounts.update_user
+      consumes:
+      - application/json
+      produces:
+      - application/json
+      parameters:
+      - in: body
+        name: updateUser
+        description: Inventory item to add
+        schema:
+          $ref: '#/definitions/User'
+      responses:
+        201:
+          description: Successfully added user to the DB
+        400:
+          description: invalid input, object invalid
+        408:
+          description: error, item not modified
+        409:
+          description: an existing item already exists
 
   # /games/{gameTitle}:
   #     get:

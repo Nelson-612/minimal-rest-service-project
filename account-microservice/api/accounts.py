@@ -21,9 +21,9 @@ def read_game_by_title(gameTitle):
 def read_all_games():
     return data_provider.read_all_games()
 
-# @inject
-# def update_user(user_payload):
-#     return data_provider.update_user(user_payload)
+@inject
+def update_user(updateUser):
+    return user_provider.update_user(updateUser)
 
 # @inject
 # def delete_user(user_id):

@@ -25,10 +25,6 @@ class MongoProvider(object):
 		self.mydb = self.myclient["steam"]
 		self.mycol = self.mydb["discountgame"]
 
-# 	def create_user(self, steamUser):
-		
-# 		self.mycol.insert_one(steamUser)
-# 		return json.loads(JSONEncoder().encode(steamUser)), 201
 
 	# def read_game_by_title(self, gameTitle):
 		
