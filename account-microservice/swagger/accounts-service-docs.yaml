@@ -79,42 +79,44 @@ paths:
           description: error, item not modified
         409:
           description: an existing item already exists
+    
+  /games/deleteUser/{deleteUser}:
+    delete:
+        tags:
+        - admins
+        parameters:
+          - in: path
+            name: deleteUser
+            type: string
+            required: true
+            description: Numeric ID of the user to delete.
+        operationId: api.accounts.delete_user
+        responses:
+          200:
+            description: Successfully deleted user
+          400:
+            description: invalid input, object invalid
+          409:
+            description: conflict error
+          401:
+            description: Not correctly authorized
 
-  # /games/{gameTitle}:
-  #     get:
-  #       tags:
-  #       - public
-  #       operationId: api.accounts.read_game_by_title
-  #       parameters:
-  #         - in: path
-  #           name: gameTitle
-  #           type: string
-  #           required: true
-  #           description: Numeric ID of the user to get.
-  #       responses:
-  #         '200':
-  #           description: 'Fetch a user from the database'
-  #           schema:
-  #               $ref: '#/definitions/User'
-      # delete:
-      #   tags:
-      #   - admins
-      #   parameters:
-      #     - in: path
-      #       name: user_id
-      #       type: string
-      #       required: true
-      #       description: Numeric ID of the user to delete.
-      #   operationId: api.accounts.delete_user
-      #   responses:
-      #     200:
-      #       description: Successfully deleted user
-      #     400:
-      #       description: invalid input, object invalid
-      #     409:
-      #       description: conflict error
-      #     401:
-      #       description: Not correctly authorized
+  /games/{gameTitle}:
+      get:
+        tags:
+        - public
+        operationId: api.accounts.read_game_by_title
+        parameters:
+          - in: path
+            name: gameTitle
+            type: string
+            required: true
+            description: Numeric ID of the user to get.
+        responses:
+          '200':
+            description: 'Fetch a user from the database'
+            schema:
+                $ref: '#/definitions/User'
       
 
 # tags are used for organizing operations

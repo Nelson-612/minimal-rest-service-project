@@ -33,10 +33,12 @@ class UserProvider(object):
 	def update_user(self, updateUser):
 		# if self.mycol.count.documents({'_id': updateUser['_id']}, limit=1) != 0: 
 		#     print("Found a user in DB with this id")
-		user_query = {"_id": updateUser['_id']}
-		new_values = {"$set": updateUser}
+		update_fields = dict(updateUser)
+		
+		update_fields.pop('_id', None)
+		new_values = {"$set": update_fields}
 
-		x = self.mycol.update_one(user_query, new_values)
+		x = self.mycol.update_one({"_id": ObjectId(updateUser.get('_id'))}, new_values)
 		if x.modified_count != 0:
 			return {"message": "Success"}, 201
 		else:
@@ -44,3 +46,16 @@ class UserProvider(object):
 		# else:
 		#     # user not found
 		#     return {"error": "user not found"}, 409
+		
+	def delete_user(self, deleteUser):
+		try:
+			user_query = {"_id": ObjectId(deleteUser)}
+		except Exception:
+			return {"error": "Invalid _id format"}, 400
+
+		x = self.mycol.delete_one(user_query)
+		if x.deleted_count != 0:
+			return {"message": "Success"}, 200
+
+		else:
+			return {"error": "user not found"}, 400

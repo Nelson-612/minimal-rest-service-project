@@ -26,39 +26,39 @@ class MongoProvider(object):
 		self.mycol = self.mydb["discountgame"]
 
 
-	# def read_game_by_title(self, gameTitle):
+	def read_game_by_title(self, gameTitle):
 		
-	# 	# print(f"Database: {self.mydb.name}")
-	# 	# print(f"Collection:  {self.mycol.name}")
-	# 	# collections = self.mydb.list_collection_names()
-	# 	# print(f"Available collections: {collections}")
-	# 	# count = self.mycol.count_documents({})
-	# 	# print(f"Number of documents in collection: {count}")
+		print(f"Database: {self.mydb.name}")
+		print(f"Collection:  {self.mycol.name}")
+		collections = self.mydb.list_collection_names()
+		print(f"Available collections: {collections}")
+		count = self.mycol.count_documents({})
+		print(f"Number of documents in collection: {count}")
 
-	# 	if self.mycol.count_documents({'title': gameTitle}, limit=1) != 0:
-	# 		user_query = {"title": gameTitle}
+		if self.mycol.count_documents({'title': gameTitle}, limit=1) != 0:
+			user_query = {"title": gameTitle}
 
-	# 		user = self.mycol.find_one(user_query)
-	# 		# print(f"Found user: {user}")
-	# 		user = JSONEncoder().encode(user)
-	# 		return json.loads(user), 200
-	# 	else:
-	# 		return {"error": "user not found"}, 400
+			user = self.mycol.find_one(user_query)
+			# print(f"Found user: {user}")
+			user = JSONEncoder().encode(user)
+			return json.loads(user), 200
+		else:
+			return {"error": "user not found"}, 400
 
 	def read_all_games(self):
 		logs = self.mycol.find()
 		logs_list = list(logs)
 		print(logs_list)
 
-	# 	collections = self.mydb.list_collection_names()
-	# 	print(f"Available collections: {collections}")
-	# 	count = self.mycol.count_documents({})
-	# 	print(f"Number of documents in collection: {count}")
+		collections = self.mydb.list_collection_names()
+		print(f"Available collections: {collections}")
+		count = self.mycol.count_documents({})
+		print(f"Number of documents in collection: {count}")
 		
-	# 	# Use dumps and parse back to dict for consistent return format
-	# 	json_string = dumps(logs_list)
-	# 	logs_dict = json.loads(json_string)
-	# 	return {"logs": logs_dict}, 200
+		# Use dumps and parse back to dict for consistent return format
+		json_string = dumps(logs_list)
+		logs_dict = json.loads(json_string)
+		return {"logs": logs_dict}, 200
 	
 
 

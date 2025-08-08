@@ -25,9 +25,9 @@ def read_all_games():
 def update_user(updateUser):
     return user_provider.update_user(updateUser)
 
-# @inject
-# def delete_user(user_id):
-#     return data_provider.delete_user(user_id)
+@inject
+def delete_user(deleteUser):
+    return user_provider.delete_user(deleteUser)
 
 
 def basic_auth(username, password, required_scopes=None):
